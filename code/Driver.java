@@ -1,13 +1,10 @@
-<<<<<<< HEAD
-package mySql;
+package mySql.code;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-=======
-package mySql.code;
->>>>>>> Update Code
 import javax.swing.JFrame;
 
 public class Driver {
@@ -15,15 +12,13 @@ public class Driver {
 	public static void main(String[] args) {
 
 		UserInterface Interface = new UserInterface();
-<<<<<<< HEAD
+
 		Interface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Interface.setSize(275, 180);
 		Interface.setVisible(true);
-=======
 		Interface.setSize(350, 180);
 		Interface.setVisible(true);
 		Interface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
->>>>>>> Update Code
 
 		// TODO Auto-generated method stub
 		/*
@@ -38,7 +33,6 @@ public class Driver {
 		 * JOptionPane.showMessageDialog(null, "Total is " + sum, "Result",
 		 * JOptionPane.PLAIN_MESSAGE);
 		 */
-<<<<<<< HEAD
 		try {
 			// step 1: create connection to database
 			Connection myConn = DriverManager.getConnection(
@@ -59,8 +53,6 @@ public class Driver {
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
-=======
->>>>>>> Update Code
 
 	}
 

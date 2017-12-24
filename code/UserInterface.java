@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-package mySql;
 
+/*
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 public class UserInterface extends JFrame {
 	private JTextField item1;
 	private JTextField item2;
@@ -61,9 +59,8 @@ public class UserInterface extends JFrame {
 	}
 
 }
-=======
+*/
 package mySql.code;
-
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -122,4 +119,3 @@ public class UserInterface extends JFrame {
  * 
  * } public String getCity1() { return city1; } }
  */
->>>>>>> Update Code
