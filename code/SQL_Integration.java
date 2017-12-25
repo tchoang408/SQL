@@ -17,11 +17,18 @@ public class SQL_Integration {
 			// step 3: Execute SQL query
 			ResultSet myRs = myStmt.executeQuery(select);
 			// step 4: Process the result set
+			System.out.println(
+					"----------------------------------------------------------------------------------");
+			System.out.printf("%-6s%-20s%-25s%-20s%-20s\n", "ID", "Name",
+					"CountryCode", "District", "Population");
+
 			while (myRs.next()) {
 
-				System.out.println(myRs.getString("Name") + ","
-						+ myRs.getString("District") + "  "
-						+ myRs.getString("Population"));
+				System.out.printf("%-6s%-20s%-25s%-20s%-20s\n",
+						myRs.getString("ID"), myRs.getString("Name"),
+						myRs.getString("CountryCode"),
+						myRs.getString("District"),
+						myRs.getString("Population"));
 			}
 
 		} catch (Exception exc) {
