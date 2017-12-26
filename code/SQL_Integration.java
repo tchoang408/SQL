@@ -9,6 +9,7 @@ public class SQL_Integration {
 
 	public void SetUpConnection(String select) {
 		try {
+
 			// step 1: create connection to database
 			Connection myConn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/world", "root", "veritas34");
@@ -19,12 +20,11 @@ public class SQL_Integration {
 			// step 4: Process the result set
 			System.out.println(
 					"----------------------------------------------------------------------------------");
-			System.out.printf("%-6s%-20s%-25s%-20s%-20s\n", "ID", "Name",
+			System.out.printf("%-6s%-40s%-25s%-30s%-20s\n", "ID", "Name",
 					"CountryCode", "District", "Population");
-
 			while (myRs.next()) {
 
-				System.out.printf("%-6s%-20s%-25s%-20s%-20s\n",
+				System.out.printf("%-6s%-40s%-25s%-30s%-20s\n",
 						myRs.getString("ID"), myRs.getString("Name"),
 						myRs.getString("CountryCode"),
 						myRs.getString("District"),

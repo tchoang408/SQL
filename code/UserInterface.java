@@ -32,9 +32,11 @@ public class UserInterface extends JFrame {
 		super("Search Window");
 		label2 = new JLabel("Select a search category");
 		add(label2);
-		dropMenu = new JComboBox(new String[]{"ID", "City Name", "Population",
+		dropMenu = new JComboBox(new String[]{"ID", "Name", "Population",
 				"District", "ContryCode"});
 		add(dropMenu);
+		dropMenu.setSelectedIndex(0);
+		searchType = (String) dropMenu.getSelectedItem();
 		setLayout(new FlowLayout());
 		rEqualButton = new JRadioButton("Equal");
 		rGreaterButton = new JRadioButton("Greater Than");
@@ -44,6 +46,8 @@ public class UserInterface extends JFrame {
 		group.add(rGreaterButton);
 		group.add(rLessButton);
 		add(rEqualButton);
+		rEqualButton.setSelected(true);
+		equality = "=";
 		add(rGreaterButton);
 		add(rLessButton);
 		label1 = new JLabel("Search");
@@ -80,15 +84,19 @@ public class UserInterface extends JFrame {
 			} else if (event.getSource() == rEqualButton
 					|| event.getSource() == rGreaterButton
 					|| event.getSource() == rLessButton) {
-				equality = event.getActionCommand();
-				System.out.println(equality);
+				if (event.getActionCommand() == "Less Than")
+					equality = "<";
+				else if (event.getActionCommand() == "Greater Than")
+					equality = ">";
+				else
+					equality = "=";
 			} else if (event.getSource() == text1) {
 				userInput = event.getActionCommand();
 			} else {
 				userInput = text1.getText();
-				select = String.format("select * from city WHERE %s='%s'",
-						searchType, userInput);
-				// System.out.println(select);
+				select = String.format("select * from city WHERE %s%s'%s'",
+						searchType, equality, userInput);
+				System.out.println(select);
 				mySQL.SetUpConnection(select);
 			}
 
@@ -97,7 +105,7 @@ public class UserInterface extends JFrame {
 
 	private void submitAction() {
 		mySQL = new SQL_Integration();
-		String select = "select * from city WHERE name=" + "'" + text1.getText()
+		String select = "select * from city WHERE ame=" + "'" + text1.getText()
 				+ "'";
 		mySQL.SetUpConnection(select);
 	}
