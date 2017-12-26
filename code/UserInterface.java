@@ -1,104 +1,66 @@
-
-/*
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-public class UserInterface extends JFrame {
-	private JTextField item1;
-	private JTextField item2;
-	private JTextField item3;
-	private JTextField item4;
-	private JPasswordField passwordField;
-	private JLabel cityLabel;
-	private JLabel idLabel;
-
-	public UserInterface() {
-		super("Database");
-		setLayout(new FlowLayout());
-		// Label a textField for item1
-		cityLabel = new JLabel("Please enter a city");
-		add(cityLabel);
-		// create a text field of 10 character
-		item1 = new JTextField(10);
-		add(item1);
-		// label a textfield for item2
-		idLabel = new JLabel("Please enter a ID");
-		add(idLabel);
-		//
-		item2 = new JTextField("Enter text here");
-		add(item2);
-		//
-		item3 = new JTextField("undeditable", 20);
-		item3.setEditable(false);
-		add(item3);
-		//
-		passwordField = new JPasswordField("mypass");
-		add(passwordField);
-		TheHandler handler = new TheHandler();
-		item1.addActionListener(handler);
-
-	}
-	private class TheHandler implements ActionListener {
-
-		public void actionPerformed(ActionEvent event) {
-
-			String string = "";
-			if (event.getSource() == item1)
-				string = String.format("field 1: %s", event.getActionCommand());
-
-			JOptionPane.showMessageDialog(null, string);
-
-		}
-
-	}
-
-}
-*/
 package mySql.code;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class UserInterface extends JFrame {
 	private JTextField text1;
 	private JLabel label1;
 	private JLabel label2;
+	private JLabel label3;
 	private JButton button1;
+	private JRadioButton rEqualButton;
+	private JRadioButton rGreaterButton;
+	private JRadioButton rLessButton;
+	private ButtonGroup group;
 	private SQL_Integration mySQL;
 	private JComboBox dropMenu;
+
 	private String searchType;
 	private String userInput;
-
+	private String equality;
 	public UserInterface() {
+		// The following desfin GUI interfaces
 		super("Search Window");
 		label2 = new JLabel("Select a search category");
 		add(label2);
-		dropMenu = new JComboBox(new String[]{"ID", "Name", "Population",
+		dropMenu = new JComboBox(new String[]{"ID", "City Name", "Population",
 				"District", "ContryCode"});
 		add(dropMenu);
 		setLayout(new FlowLayout());
+		rEqualButton = new JRadioButton("Equal");
+		rGreaterButton = new JRadioButton("Greater Than");
+		rLessButton = new JRadioButton("Less Than");
+		group = new ButtonGroup();
+		group.add(rEqualButton);
+		group.add(rGreaterButton);
+		group.add(rLessButton);
+		add(rEqualButton);
+		add(rGreaterButton);
+		add(rLessButton);
 		label1 = new JLabel("Search");
 		add(label1);
 		text1 = new JTextField("Enter Here", 10);
 		add(text1);
 		button1 = new JButton("Enter");
 		add(button1);
+		// The following are action listeners function
 		TheHandler handler = new TheHandler();
 		dropMenu.addActionListener(handler);
 		text1.addActionListener(handler);
 		button1.addActionListener(handler);
+		rEqualButton.addActionListener(handler);
+		rGreaterButton.addActionListener(handler);
+		rLessButton.addActionListener(handler);
+
 		// text1.getDocument().addDocumentListener(listener);
 		/*
 		 * 2nd method of using action listener button1.addActionListener((e) ->
@@ -112,7 +74,14 @@ public class UserInterface extends JFrame {
 			String select = "";
 			if (event.getSource() == dropMenu) {
 				searchType = (String) dropMenu.getSelectedItem();
-				// System.out.println(searchType);
+
+				// This code activate when use press the enter button but
+				// doesn't really do anything
+			} else if (event.getSource() == rEqualButton
+					|| event.getSource() == rGreaterButton
+					|| event.getSource() == rLessButton) {
+				equality = event.getActionCommand();
+				System.out.println(equality);
 			} else if (event.getSource() == text1) {
 				userInput = event.getActionCommand();
 			} else {
